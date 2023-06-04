@@ -1,14 +1,14 @@
 # email_SQL_Python
 # SQL and Python for Enhanced Email Marketing Strategies 
 
-Goal -Enabling **personalized** email marketing strategies in order to bost customer **engagement** and **sales**. 
+Goal -Enabling **personalized** email marketing strategies in order to boost customer **engagement** and **sales**. 
 
 1) **SEGMENTATION WITH SQL** The first step is to understand customer types by using SQL and dividing a dataset into distinct groups or segments based on predefined criteria or characteristics. It is a big help for **targeted email marketing**, enhancing message relevance and sales. 
 
 2) **CLUSTERING WITH PYTHON** The second step is to use Python's **machine learning** algorithms tag and cluster customers. This technique used to automatically group similar customers together based on their inherent patterns or similarities, without prior knowledge or predefined criteria. Clustering also can help identify high-value customer segments with a higher potential for long-term profitability (CLV- Customer Lifetime Value). Clustering is often used in exploratory data analysis, pattern recognition, and anomaly detection.
 
 
-
+**Comments on functionality**
 
 ## SQL
 SQL helps manage data and can be used in marketing to segment your customer database based on different factors like buying habits, demographics, or customer preferences. This segmentation allows for more personalized and effective marketing messages. For example, you can identify and target customers who often buy a certain product category. 
