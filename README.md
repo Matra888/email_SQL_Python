@@ -48,9 +48,9 @@ Step 8: Monitor and Refine:
 Continuously monitor the performance of your segmentation strategy and refine it as needed. Collect feedback, analyze campaign results, and make adjustments to optimize the effectiveness of your targeted email marketing efforts.
 By using SQL to segment customers, you can divide your dataset into distinct groups based on predefined criteria or characteristics. This segmentation helps in targeted email marketing by enhancing message relevance and driving sales. 
 
-SQL queries for segmentation:
 
-Certainly! Here are the modified SQL queries with descriptions for each segment:
+
+SQL queries with descriptions for each segment:
 
 1. High-Value Customers (CLV Segment):
 ```sql
