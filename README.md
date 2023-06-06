@@ -109,26 +109,16 @@ WHERE CustomerID IN (
 ```
 Description: This query selects customers who have recently subscribed to your mailing list within the last 30 days. These are new subscribers who have shown an interest in your brand or product. You can send them a welcome email series, introductory offers, or exclusive content to nurture the relationship and convert them into active customers.
 
-5. Webinar Attendees:
+5. Geographic Segments:
 ```sql
 SELECT *
-FROM customers
-WHERE CustomerID IN (
-    SELECT CustomerID
-    FROM webinar_attendees
-)
-```
-Description: This query selects customers who have attended a webinar hosted by your company. These customers have shown a strong interest in your industry or topic of the webinar. You can follow up with them by providing additional resources, exclusive insights, or targeted offers based on the webinar content to deepen their engagement and convert them into customers.
+FROM your_dataset_table
+WHERE Country = 'United States';
 
-6. Geographic Segments:
-```sql
-SELECT *
-FROM customers
-WHERE Country = 'United States'
 ```
 Description: This query selects customers located in the United States. Geographic segmentation allows you to target customers based on their location, which can be useful for region-specific promotions, localized offers, or understanding regional preferences and trends. You can customize your email content or promotions to cater to the specific needs and preferences of customers in different geographic areas.
 
-7. Buying Patterns based on Time Periods:
+6. Buying Patterns based on Time Periods:
 ```sql
 
 SELECT *
@@ -138,7 +128,7 @@ WHERE MONTH(OrderDate) = 1; -- Replace '1' with the desired month value
 Description: This query selects all rows where the orders were placed in a specific month (in this case, January). By analyzing buying patterns based on time periods such as seasons or months, you can identify trends and tailor marketing campaigns accordingly. For example, you can offer seasonal promotions, launch targeted campaigns during peak buying periods, or adjust inventory management based on demand patterns.
 
 
-8. Volume of Products Ordered:
+7. Volume of Products Ordered:
 ```sql
 SELECT *
 FROM your_dataset_table
@@ -147,7 +137,7 @@ WHERE QuantityOrderedNew > 100; -- Replace '100' with the desired threshold
 Description: This query selects rows where the quantity of products ordered is above a specified threshold (e.g., 100). By segmenting customers based on the volume of products they order, you can target high-volume customers with special offers, bulk discounts, or loyalty programs. It also helps identify potential influencers or brand advocates who can drive word-of-mouth referrals due to their frequent purchases.
 
 
-9. Preferred Shipping Method:
+8. Preferred Shipping Method:
 ```sql
 SELECT *
 FROM your_dataset_table
