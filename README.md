@@ -55,53 +55,57 @@ SQL queries with descriptions for each segment:
 1. High-Value Customers (CLV Segment):
 ```sql
 SELECT *
-FROM customers
+FROM your_dataset_table
 WHERE CustomerID IN (
     SELECT CustomerID
-    FROM orders
+    FROM your_dataset_table
     GROUP BY CustomerID
     HAVING SUM(Sales) > 10000
-)
+);
+
 ```
 Description: This query selects customers who have made purchases with a total sales value greater than $10,000, making them high-value customers in terms of their lifetime spending. These customers are likely to be valuable for personalized marketing campaigns and should be targeted with tailored offers,promotions or loyalty programs. 
 
 2. Frequent Buyers:
 ```sql
 SELECT *
-FROM customers
+FROM your_dataset_table
 WHERE CustomerID IN (
     SELECT CustomerID
     FROM (
         SELECT CustomerID, COUNT(*) as order_count
-        FROM orders
+        FROM your_dataset_table
         GROUP BY CustomerID
     ) AS subquery
     WHERE order_count > 5
-)
+);
+
 ```
 Description: This query selects customers who have placed more than 5 orders, indicating that they are frequent buyers. These customers have demonstrated a strong purchasing behavior and may respond well to loyalty programs, exclusive discounts, or rewards aimed at maintaining their loyalty and encouraging repeat purchases.
 
 3. Inactive Customers:
 ```sql
 SELECT *
-FROM customers
+FROM your_dataset_table
 WHERE CustomerID IN (
     SELECT CustomerID
-    FROM orders
+    FROM your_dataset_table
     WHERE OrderDate < DATE_SUB(CURDATE(), INTERVAL 6 MONTH)
-)
+);
+
 ```
 Description: This query selects customers who have not placed any orders within the last 6 months, indicating that they are inactive. These customers may require special attention to reactivate their engagement. You can target them with personalized offers, re-engagement campaigns, or surveys to understand their reasons for inactivity and encourage them to make a purchase.
 
 4. New Subscribers:
 ```sql
 SELECT *
-FROM customers
+FROM your_dataset_table
 WHERE CustomerID IN (
     SELECT CustomerID
-    FROM subscribers
+    FROM your_dataset_table
     WHERE SubscriptionDate >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)
-)
+);
+
 ```
 Description: This query selects customers who have recently subscribed to your mailing list within the last 30 days. These are new subscribers who have shown an interest in your brand or product. You can send them a welcome email series, introductory offers, or exclusive content to nurture the relationship and convert them into active customers.
 
