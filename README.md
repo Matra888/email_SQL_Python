@@ -131,6 +131,7 @@ SELECT *
 FROM your_dataset_table
 WHERE MONTH(OrderDate) = 1; -- Replace '1' with the desired month value
 Description: This query selects all rows where the orders were placed in a specific month (in this case, January). By analyzing buying patterns based on time periods such as seasons or months, you can identify trends and tailor marketing campaigns accordingly. For example, you can offer seasonal promotions, launch targeted campaigns during peak buying periods, or adjust inventory management based on demand patterns.
+```
 
 8. Volume of Products Ordered:
 ```sql
@@ -138,7 +139,7 @@ SELECT *
 FROM your_dataset_table
 WHERE QuantityOrderedNew > 100; -- Replace '100' with the desired threshold
 Description: This query selects rows where the quantity of products ordered is above a specified threshold (e.g., 100). By segmenting customers based on the volume of products they order, you can target high-volume customers with special offers, bulk discounts, or loyalty programs. It also helps identify potential influencers or brand advocates who can drive word-of-mouth referrals due to their frequent purchases.
-
+```
 
 9. Preferred Shipping Method:
 ```sql
@@ -146,7 +147,7 @@ SELECT *
 FROM your_dataset_table
 WHERE ShipMode = 'Express'; -- Replace 'Express' with the desired shipping method
 Description: This query selects rows where customers have chosen a specific shipping mode (e.g., 'Express'). Analyzing the preferred shipping method helps you understand customer preferences and optimize your logistics and delivery processes. You can offer shipping upgrades, incentivize customers to choose certain shipping options, or streamline your fulfillment strategies to meet customer expectations and enhance their overall shopping experience.
-
+```
 
 
 These queries, along with their descriptions, can help you identify and target specific segments of customers for personalized email marketing campaigns, leading to better engagement, increased sales, and improved customer satisfaction.
