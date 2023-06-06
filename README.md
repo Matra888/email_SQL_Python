@@ -43,23 +43,33 @@ Based on the analysis and evaluation, assign meaningful labels or names to each 
 Step 7: Apply the Segmentation Insights:
 
 Utilize the segmented customer groups in your targeted email marketing campaigns. Craft tailored messages, offers, or promotions specific to each segment's characteristics and preferences to enhance message relevance and improve sales.
+
 Step 8: Monitor and Refine:
 
 Continuously monitor the performance of your segmentation strategy and refine it as needed. Collect feedback, analyze campaign results, and make adjustments to optimize the effectiveness of your targeted email marketing efforts.
 By using SQL to segment customers, you can divide your dataset into distinct groups based on predefined criteria or characteristics. This segmentation helps in targeted email marketing by enhancing message relevance and driving sales. 
 
-
+Data Set rows -(['row_id', 'order_priority', 'discount', 'unit_price', 'shipping_cost',
+       'customer_id', 'customer_name', 'ship_mode', 'customer_type',
+       'product_category', 'product_sub-category', 'product_container',
+       'product_name', 'product_base_margin', 'country', 'region',
+       'state_or_province', 'city', 'postal_code', 'order_date', 'ship_date',
+       'profit', 'quantity_ordered_new', 'sales', 'subscriptiondate',
+       'order_id', 'Total Purchase Amount', 'Purchase Frequency',
+       'Average Discount', 'Popular Product Category', 'Shipping Cost Ratio',
+       'Average Order Processing Time', 'Product Sub-Category Diversity'],
+      dtype='object')
 
 SQL queries with descriptions for each segment:
 
 1. High-Value Customers (CLV Segment):
 ```sql
 SELECT *
-FROM your_dataset_table
-WHERE CustomerID IN (
-    SELECT CustomerID
-    FROM your_dataset_table
-    GROUP BY CustomerID
+FROM US_Store
+WHERE Customer_ID IN (
+    SELECT Customer_ID
+    FROM US_Store
+    GROUP BY Customer_ID
     HAVING SUM(Sales) > 10000
 );
 
