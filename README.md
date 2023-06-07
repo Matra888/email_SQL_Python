@@ -186,7 +186,7 @@ Shipping Cost Ratio: Calculate the ratio of Shipping Cost to the total purchase 
 
 Time Between Order and Shipment: Calculate the time difference (in days) between the Order Date and Ship Date for each order. Aggregate this value to determine the average time it takes to fulfill orders for each customer. This feature can highlight customers who value quick order processing and prompt delivery.
 
-**Python Code 
+**Python Code Step 1 - Feature Engineering 
 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -257,12 +257,8 @@ axes[1, 1].set_title('Product Sub-Category Diversity Distribution')
 df.groupby('customer_id')['Shipping Cost Ratio'].mean().plot(kind='hist', ax=axes[1, 2])
 axes[1, 2].set_xlabel('Shipping Cost Ratio')
 axes[1, 2].set_ylabel('Number of Customers')
-axes[1, 2].set_title('Shipping Cost Ratio Distribution')
+axes[1, 2].set_title('
 
-# Adjust the layout and save the figure
-plt.tight_layout()
-plt.savefig('visualizations.png')
-plt.show()
 
 
 Once you have performed feature engineering on your dataset, you can use various techniques in Python to identify opportunities for cross-selling and upselling. Here are a few approaches you can consider:
