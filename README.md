@@ -181,39 +181,34 @@ Cross-Selling and Upselling Opportunities: By analyzing purchase behavior within
 To gain insights into customer behavior and preferences, we can analyze various factors using Python. Here are some examples of how we can implement these analyses:
 
 
-
 ```python
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import sqlalchemy
 
+# Connect to the SQL database
+engine = sqlalchemy.create_engine('your_database_connection_string')
 
-Read the dataset into a pandas DataFrame
+# Read the data from the "us_store" table into a pandas DataFrame
+df = pd.read_sql('SELECT * FROM us_store', engine)
 
-df = pd.read_csv('your_dataset.csv')
-
-
-Calculate total purchase amount
-
+# Calculate total purchase amount
 df['Total Purchase Amount'] = df['unit_price'] * df['quantity_ordered_new']
 
-
-Determine purchase frequency
-
+# Determine purchase frequency
 purchase_frequency = df.groupby('customer_id')['order_id'].nunique()
 df['Purchase Frequency'] = df['customer_id'].map(purchase_frequency)
 
-
-Calculate average discount
-
+# Calculate average discount
 average_discount = df.groupby('customer_id')['discount'].mean()
 df['Average Discount'] = df['customer_id'].map(average_discount)
 
-
-Identify popular product category
-
+# Identify popular product category
 popular_category = df.groupby('customer_id')['product_category'].apply(lambda x: x.value_counts().idxmax())
 df['Popular Product Category'] = df['customer_id'].map(popular_category)
+
+
 ```
 
 By integrating these Python code examples into our analysis, we can efficiently calculate the total purchase amount, determine purchase frequency, calculate average discounts, and identify popular product categories for each customer. These code snippets utilize pandas library functionalities to perform the necessary computations.
@@ -222,9 +217,10 @@ By integrating these Python code examples into our analysis, we can efficiently 
 With the results obtained from these analyses, we can gain a comprehensive understanding of customer behavior, preferences, and potential marketing strategies to enhance customer satisfaction and drive sales.
 
 Once we have implemented the Python code examples, we can further analyze the data and extract valuable insights. For example:
-```python
-Visualize high-value customers
 
+```python
+
+# Visualize high-value customers
 high_value_customers = df.groupby('customer_id')['Total Purchase Amount'].sum().sort_values(ascending=False).head(10)
 plt.figure(figsize=(10, 6))
 sns.barplot(x=high_value_customers.index, y=high_value_customers.values)
@@ -233,9 +229,7 @@ plt.ylabel('Total Purchase Amount')
 plt.title('Top High-Value Customers')
 plt.show()
 
-
-Visualize purchase frequency distribution
-
+# Visualize purchase frequency distribution
 plt.figure(figsize=(10, 6))
 sns.histplot(data=df, x='Purchase Frequency', bins=10)
 plt.xlabel('Purchase Frequency')
@@ -243,9 +237,7 @@ plt.ylabel('Count')
 plt.title('Purchase Frequency Distribution')
 plt.show()
 
-
-Visualize average discount distribution
-
+# Visualize average discount distribution
 plt.figure(figsize=(10, 6))
 sns.histplot(data=df, x='Average Discount', bins=10)
 plt.xlabel('Average Discount')
@@ -253,9 +245,7 @@ plt.ylabel('Count')
 plt.title('Average Discount Distribution')
 plt.show()
 
-
-Visualize top product categories
-
+# Visualize top product categories
 top_product_categories = df['Popular Product Category'].value_counts().head(5)
 plt.figure(figsize=(10, 6))
 sns.barplot(x=top_product_categories.index, y=top_product_categories.values)
@@ -263,6 +253,7 @@ plt.xlabel('Product Category')
 plt.ylabel('Count')
 plt.title('Top Product Categories')
 plt.show()
+
 ```
 
 
