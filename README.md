@@ -188,83 +188,81 @@ Time Between Order and Shipment: Calculate the time difference (in days) between
 
 **Python Code Step 1 - Feature Engineering 
 
+```python
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
 
-# Read the data from the SQL database
-df = pd.read_sql_query("SELECT * FROM us_store", engine)
 
-# Calculate Total Purchase Amount
+Read the dataset into a pandas DataFrame
+
+df = pd.read_csv('your_dataset.csv')
+
+
+Calculate total purchase amount
+
 df['Total Purchase Amount'] = df['unit_price'] * df['quantity_ordered_new']
 
-# Calculate Purchase Frequency
+
+Determine purchase frequency
+
 purchase_frequency = df.groupby('customer_id')['order_id'].nunique()
 df['Purchase Frequency'] = df['customer_id'].map(purchase_frequency)
 
-# Calculate Average Discount
+
+Calculate average discount
+
 average_discount = df.groupby('customer_id')['discount'].mean()
 df['Average Discount'] = df['customer_id'].map(average_discount)
 
-# Calculate Popular Product Category
-popular_category = df.groupby('customer_id')['product_category'].agg(lambda x: x.value_counts().index[0])
+
+Identify popular product category
+
+popular_category = df.groupby('customer_id')['product_category'].apply(lambda x: x.value_counts().idxmax())
 df['Popular Product Category'] = df['customer_id'].map(popular_category)
 
-# Calculate Product Sub-Category Diversity
-product_diversity = df.groupby('customer_id')['product_sub-category'].nunique()
-df['Product Sub-Category Diversity'] = df['customer_id'].map(product_diversity)
 
-# Calculate Shipping Cost Ratio
-df['Shipping Cost Ratio'] = df['shipping_cost'] / df['Total Purchase Amount']
+Visualize high-value customers
 
-# Calculate Average Order Processing Time
-df['order_date'] = pd.to_datetime(df['order_date'])
-df['ship_date'] = pd.to_datetime(df['ship_date'])
-df['Average Order Processing Time'] = (df['ship_date'] - df['order_date']).dt.days
+high_value_customers = df.groupby('customer_id')['Total Purchase Amount'].sum().sort_values(ascending=False).head(10)
+plt.figure(figsize=(10, 6))
+sns.barplot(x=high_value_customers.index, y=high_value_customers.values)
+plt.xlabel('Customer ID')
+plt.ylabel('Total Purchase Amount')
+plt.title('Top High-Value Customers')
+plt.show()
 
-# Visualize the results
-fig, axes = plt.subplots(2, 3, figsize=(12, 8))
 
-# Total Purchase Amount
-df.groupby('customer_id')['Total Purchase Amount'].sum().plot(kind='bar', ax=axes[0, 0])
-axes[0, 0].set_xlabel('Customer ID')
-axes[0, 0].set_ylabel('Total Purchase Amount')
-axes[0, 0].set_title('Total Purchase Amount by Customer')
+Visualize purchase frequency distribution
 
-# Purchase Frequency
-df['Purchase Frequency'].value_counts().sort_index().plot(kind='bar', ax=axes[0, 1])
-axes[0, 1].set_xlabel('Purchase Frequency')
-axes[0, 1].set_ylabel('Number of Customers')
-axes[0, 1].set_title('Purchase Frequency Distribution')
+plt.figure(figsize=(10, 6))
+sns.histplot(data=df, x='Purchase Frequency', bins=10)
+plt.xlabel('Purchase Frequency')
+plt.ylabel('Count')
+plt.title('Purchase Frequency Distribution')
+plt.show()
 
-# Average Discount
-df.groupby('customer_id')['Average Discount'].mean().plot(kind='hist', ax=axes[0, 2])
-axes[0, 2].set_xlabel('Average Discount')
-axes[0, 2].set_ylabel('Number of Customers')
-axes[0, 2].set_title('Average Discount Distribution')
 
-# Popular Product Category
-df['Popular Product Category'].value_counts().plot(kind='pie', ax=axes[1, 0])
-axes[1, 0].set_ylabel('')
-axes[1, 0].set_title('Popular Product Categories')
+Visualize average discount distribution
 
-# Product Sub-Category Diversity
-df.groupby('customer_id')['Product Sub-Category Diversity'].max().plot(kind='hist', ax=axes[1, 1])
-axes[1, 1].set_xlabel('Product Sub-Category Diversity')
-axes[1, 1].set_ylabel('Number of Customers')
-axes[1, 1].set_title('Product Sub-Category Diversity Distribution')
+plt.figure(figsize=(10, 6))
+sns.histplot(data=df, x='Average Discount', bins=10)
+plt.xlabel('Average Discount')
+plt.ylabel('Count')
+plt.title('Average Discount Distribution')
+plt.show()
 
-# Shipping Cost Ratio
-df.groupby('customer_id')['Shipping Cost Ratio'].mean().plot(kind='hist', ax=axes[1, 2])
-axes[1, 2].set_xlabel('Shipping Cost Ratio')
-axes[1, 2].set_ylabel('Number of Customers')
-axes[1, 2].set_title('
 
-**Display Segments ( .....) 
+Visualize top product categories
 
-....
-...
-....
-
+top_product_categories = df['Popular Product Category'].value_counts().head(5)
+plt.figure(figsize=(10, 6))
+sns.barplot(x=top_product_categories.index, y=top_product_categories.values)
+plt.xlabel('Product Category')
+plt.ylabel('Count')
+plt.title('Top Product Categories')
+plt.show()
+```
 Segment 1: High-Value Customers
 
 Total Purchase Amount: Customers in this segment have a high total purchase amount, indicating they are high spenders.
