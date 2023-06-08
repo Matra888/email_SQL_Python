@@ -1,5 +1,5 @@
 # email_SQL_Python
-# SQL and Python for Enhanced Email Marketing Strategies 
+# Goal: Boosting Customer Engagement and Sales through Personalized Email Marketing Strategies
 
 Goal -Enabling **personalized** email marketing strategies in order to boost customer **engagement** and **sales**. 
 
