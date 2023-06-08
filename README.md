@@ -25,21 +25,27 @@ THE PROCESS
 Step 1: Define the Segmentation Criteria:
 
 Determine the criteria or characteristics you want to use for segmenting the customers. This could include demographic information, purchase behavior, engagement metrics, or any other relevant factors.
+
 Step 2: Gather and Prepare the Data:
 
 Ensure you have the necessary customer data stored in a SQL database table. The data should include the attributes required for segmentation, such as customer identifiers, demographic information, and transactional data.
+
 Step 3: Write SQL Queries for Segmentation:
 
 Write SQL queries that define the criteria and rules for segmenting the customers. Use appropriate SQL functions and clauses to filter and group the data based on the segmentation criteria.
+
 Step 4: Segment the Customers:
 
 Execute the SQL queries to segment the customers based on the defined criteria. This will result in distinct groups or segments within the dataset.
+
 Step 5: Analyze and Evaluate the Segments:
 
 Analyze each segment by calculating relevant metrics and performing aggregations using SQL functions. Evaluate the characteristics, behaviors, and patterns of each segment to gain insights.
+
 Step 6: Assign Segment Labels:
 
 Based on the analysis and evaluation, assign meaningful labels or names to each segment to easily identify and reference them in future marketing activities.
+
 Step 7: Apply the Segmentation Insights:
 
 Utilize the segmented customer groups in your targeted email marketing campaigns. Craft tailored messages, offers, or promotions specific to each segment's characteristics and preferences to enhance message relevance and improve sales.
@@ -169,24 +175,12 @@ Business Goals:
 
 Cross-Selling and Upselling Opportunities: By analyzing purchase behavior within clusters, you can identify opportunities for cross-selling and upselling. For example, customers within a specific segment might be more inclined to purchase complementary products or upgrade their purchases.
 
-1st step - FEATURE ENGINEERING 
-Here are some examples of feature engineering that you can perform on your dataset to identify opportunities for cross-selling and upselling:
-
-Total Purchase Amount: Calculate the total purchase amount for each customer by multiplying the Unit Price and Quantity ordered new columns. This feature represents the overall spending behavior of customers and can help identify high-value customers.
-
-Purchase Frequency: Determine the frequency of purchases for each customer by counting the number of unique Order ID values associated with their Customer ID. This feature indicates how often a customer makes purchases and can reveal their engagement level.
-
-Average Discount: Calculate the average discount for each customer by taking the mean of the Discount column grouped by Customer ID. This feature helps identify customers who frequently take advantage of discounts and may respond well to targeted upselling offers.
-
-Popular Product Category: Identify the most frequently purchased product category for each customer by analyzing the Product Category column. This feature helps identify cross-selling opportunities by suggesting complementary products within the same category.
-
-Product Sub-Category Diversity: Count the number of unique Product Sub-Category values for each customer. This feature represents the diversity of products purchased by a customer and can indicate their openness to trying new products or exploring different sub-categories.
-
-Shipping Cost Ratio: Calculate the ratio of Shipping Cost to the total purchase amount for each customer. This feature helps identify customers who are sensitive to shipping costs and may respond well to incentives like free shipping or discounted shipping rates.
-
-Time Between Order and Shipment: Calculate the time difference (in days) between the Order Date and Ship Date for each order. Aggregate this value to determine the average time it takes to fulfill orders for each customer. This feature can highlight customers who value quick order processing and prompt delivery.
 
 **Python Code Step 1 - Feature Engineering 
+
+To gain insights into customer behavior and preferences, we can analyze various factors using Python. Here are some examples of how we can implement these analyses:
+
+
 
 ```python
 import pandas as pd
@@ -220,8 +214,15 @@ Identify popular product category
 
 popular_category = df.groupby('customer_id')['product_category'].apply(lambda x: x.value_counts().idxmax())
 df['Popular Product Category'] = df['customer_id'].map(popular_category)
+```
+
+By integrating these Python code examples into our analysis, we can efficiently calculate the total purchase amount, determine purchase frequency, calculate average discounts, and identify popular product categories for each customer. These code snippets utilize pandas library functionalities to perform the necessary computations.
 
 
+With the results obtained from these analyses, we can gain a comprehensive understanding of customer behavior, preferences, and potential marketing strategies to enhance customer satisfaction and drive sales.
+
+Once we have implemented the Python code examples, we can further analyze the data and extract valuable insights. For example:
+```python
 Visualize high-value customers
 
 high_value_customers = df.groupby('customer_id')['Total Purchase Amount'].sum().sort_values(ascending=False).head(10)
@@ -263,6 +264,8 @@ plt.ylabel('Count')
 plt.title('Top Product Categories')
 plt.show()
 ```
+
+
 Segment 1: High-Value Customers
 
 Total Purchase Amount: Customers in this segment have a high total purchase amount, indicating they are high spenders.
