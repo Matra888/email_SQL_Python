@@ -1,3 +1,6 @@
+![alt text](https://github.com/Matra888/email_SQL_Python/raw/main/Portfolio_Github_US_Store_Picture.png)
+
+
 # email_SQL_Python
 # Goal: Boosting Customer Engagement and Sales through Personalized Email Marketing Strategies
 
